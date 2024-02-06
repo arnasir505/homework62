@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Home from './pages/Home/Home';
 import Navbar from './components/Navbar/Navbar';
@@ -9,19 +9,19 @@ import Popular from './pages/Popular/Popular';
 import TopRated from './pages/Top_Rated/TopRated';
 
 function App() {
+  const [category, setCategory] = useState('/now_playing');
   const [movies, setMovies] = useState<Movie[]>([]);
 
-  const options = {
-    method: 'GET',
-    url: BASE_MOVIES_URL + '/now_playing',
-    params: { language: 'en-US', page: '1' },
-    headers: {
-      accept: 'application/json',
-      Authorization: 'Bearer ' + API_KEY,
-    },
-  };
-
-  useEffect(() => {
+  const fetchData = useCallback(() => {
+    const options = {
+      method: 'GET',
+      url: BASE_MOVIES_URL + category,
+      params: { language: 'en-US', page: '1' },
+      headers: {
+        accept: 'application/json',
+        Authorization: 'Bearer ' + API_KEY,
+      },
+    };
     axios
       .request(options)
       .then(function (response) {
@@ -31,15 +31,30 @@ function App() {
       .catch(function (error) {
         console.error(error);
       });
-  }, []);
+  }, [BASE_MOVIES_URL, category, API_KEY]);
+
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
+
+  const changeCategory = (name: string) => {
+    setCategory(name);
+  };
 
   return (
     <>
-      <Navbar />
+      <Navbar changeCategory={changeCategory} />
       <Routes>
         <Route path='/' element={<Home nowPlayingMovies={movies} />} />
-        <Route path='/popular' element={<Popular />} />
-        <Route path='/top_rated' element={<TopRated />} />
+        <Route path='/popular' element={<Popular popularMovies={movies} />} />
+        <Route
+          path='/top_rated'
+          element={<TopRated topRatedMovies={movies} />}
+        />
+        <Route
+          path='*'
+          element={<h1 className='text-center text-white mt-5'>Not Found!</h1>}
+        />
       </Routes>
     </>
   );

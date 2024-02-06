@@ -17,6 +17,8 @@ const Home: React.FC<Props> = ({ nowPlayingMovies }) => {
             poster={movie.poster_path}
             title={movie.title}
             year={movie.release_date}
+            overview={movie.overview}
+            vote_average={movie.vote_average}
           />
         ))}
       </div>
