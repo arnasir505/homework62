@@ -1,6 +1,7 @@
 .movie {
-  width: 220px;
-  transition: all 0.1s ease-in-out;
+  width: 22%;
+  transition: transform 0.1s ease-in-out;
+  position: relative;
 }
 
 .movie:hover {
@@ -30,4 +31,47 @@
 
 .year {
   opacity: 0.8;
+}
+
+.rating {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  color: #fff;
+  background-color: #212121;
+  border-radius: 5px;
+  padding: 0 5px;
+  font-weight: bold;
+}
+
+.rating.green {
+  color: lightgreen;
+}
+
+.rating.orange {
+  color: orange;
+}
+
+.rating.red {
+  color: red;
+}
+
+.overview {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 1rem;
+  background-color: #212121;
+  color: #fff;
+  max-height: 100%;
+  display: none;
+  transform: translateY(100%);
+  transition: 0.3s ease-in;
+  overflow-y: auto;
+}
+
+.movie:hover .overview {
+  display: block;
+  transform: translateY(0);
 }
