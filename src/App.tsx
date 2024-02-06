@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import Home from './pages/Home';
+import Home from './pages/Home/Home';
 import Navbar from './components/Navbar/Navbar';
 import { Movie } from './types';
 import axios from 'axios';
 import { API_KEY, BASE_MOVIES_URL } from './constants';
+import Popular from './pages/Popular/Popular';
+import TopRated from './pages/Top_Rated/TopRated';
 
 function App() {
   const [movies, setMovies] = useState<Movie[]>([]);
@@ -36,6 +38,8 @@ function App() {
       <Navbar />
       <Routes>
         <Route path='/' element={<Home nowPlayingMovies={movies} />} />
+        <Route path='/popular' element={<Popular />} />
+        <Route path='/top_rated' element={<TopRated />} />
       </Routes>
     </>
   );

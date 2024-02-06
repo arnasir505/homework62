@@ -1,5 +1,6 @@
 import React from 'react';
 import './Card.css';
+import { BASE_POSTER_URL } from '../../constants';
 
 interface Props {
   poster: string;
@@ -10,9 +11,9 @@ interface Props {
 const Card: React.FC<Props> = ({ poster, title, year }) => {
   return (
     <div className='movie'>
-      <img src={poster} alt={title} className='poster' />
+      <img src={BASE_POSTER_URL + poster} alt={title} className='poster' />
       <div className='info'>
-        <h3 className='title'>{title}</h3>
+        <h4 className='title'>{title}</h4>
         <span className='year'>{year}</span>
       </div>
     </div>

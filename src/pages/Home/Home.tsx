@@ -1,6 +1,6 @@
 import React from 'react';
-import { Movie } from '../types';
-import Card from '../components/Card/Card';
+import { Movie } from '../../types';
+import Card from '../../components/Card/Card';
 
 interface Props {
   nowPlayingMovies: Movie[];
@@ -9,13 +9,14 @@ interface Props {
 const Home: React.FC<Props> = ({ nowPlayingMovies }) => {
   return (
     <div className='container'>
-      <div className='d-flex flex-wrap gap-5'>
+      <h2 className='text-white mt-4'>Now playing in cinemas</h2>
+      <div className='d-flex flex-wrap gap-5 py-5'>
         {nowPlayingMovies.map((movie) => (
           <Card
             key={movie.id}
             poster={movie.poster_path}
             title={movie.title}
-            year={movie.date}
+            year={movie.release_date}
           />
         ))}
       </div>

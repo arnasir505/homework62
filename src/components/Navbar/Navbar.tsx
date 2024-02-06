@@ -9,13 +9,13 @@ const Navbar = () => {
         </NavLink>
         <ul className='navbar-nav me-auto'>
           <li className='nav-item'>
-            <NavLink className='nav-link link-light' to='/catalog'>
-              Catalog
+            <NavLink className='nav-link link-light' to='/popular'>
+              Popular
             </NavLink>
           </li>
           <li className='nav-item'>
-            <NavLink className='nav-link link-light' to='/profile'>
-              Profile
+            <NavLink className='nav-link link-light' to='/top_rated'>
+              Top Rated
             </NavLink>
           </li>
         </ul>
